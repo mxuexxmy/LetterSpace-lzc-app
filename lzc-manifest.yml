@@ -1,0 +1,32 @@
+lzc-sdk-version: "0.1"
+name: LetterSpace
+package: xyz.mxue.letterspace
+version: 0.0.1
+description: LetterSpace是一个开源的时事通讯应用程序,让您完全控制订阅者列表和电子邮件活动。
+homepage: https://github.com/dcodesdev/LetterSpace
+author: dcodesdev
+application:
+  subdomain: letterspace
+  background_task: false
+  multi_instance: false
+  gpu_accel: false
+  kvm_accel: false
+  usb_accel: false
+  routes:
+    - /=http://letterspace.xyz.mxue.letterspace.lzcapp:5000/
+services:
+  letterspace-db:
+    image: registry.lazycat.cloud/mxuexxmy/library/postgres:843c69368d9b1504
+    environment:
+      - POSTGRES_DB=letterspace
+      - POSTGRES_USER=letterspaceuser
+      - POSTGRES_PASSWORD=letterspacepass
+    binds:
+      - /lzcapp/var/data:/var/lib/postgresql/data
+  letterspace:
+    image: registry.lazycat.cloud/mxuexxmy/dcodesdev/letterspace:ee0b6b5bee857dd6
+    environment:
+      - DATABASE_URL=postgresql://letterspaceuser:letterspacepass@letterspace-db:5432/letterspace?schema=public
+      - JWT_SECRET=bdgyUgEkSn8FjdEUT60puMpAgyiQEP3sM/jwPebALY0=
+    depends_on:
+      - letterspace-db

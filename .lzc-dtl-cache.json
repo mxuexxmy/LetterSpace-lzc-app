@@ -1,0 +1,32 @@
+{
+  "name": "LetterSpace",
+  "package": "xyz.mxue.letterspace",
+  "description": "LetterSpace是一个开源的时事通讯应用程序,让您完全控制订阅者列表和电子邮件活动。",
+  "homepage": "https://github.com/dcodesdev/LetterSpace",
+  "author": "dcodesdev",
+  "app_features": [],
+  "subdomain": "letterspace",
+  "version": "0.0.1",
+  "iconPath": "lzc-app-icon.png",
+  "composePath": "docker-compose.yml",
+  "unsupported_platforms": [],
+  "lastRouteType": "from_compose",
+  "port_mappings": {
+    "letterspace_5455_5000": {
+      "use": true,
+      "type": "http",
+      "path": "/",
+      "targetPath": "/"
+    }
+  },
+  "image_postgres_17": {
+    "originalImage": "postgres:17",
+    "pushTarget": "lazycat"
+  },
+  "letterspace-db_volume_/var/lib/postgresql/data_action": "emptyDir",
+  "letterspace-db_volume_/var/lib/postgresql/data_location": "app_data",
+  "image_ghcr.io_dcodesdev_letterspace_latest-node": {
+    "originalImage": "ghcr.io/dcodesdev/letterspace:latest-node",
+    "pushTarget": "none"
+  }
+}

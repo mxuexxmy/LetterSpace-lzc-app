@@ -1,0 +1,19 @@
+services:
+  letterspace-db:
+    image: postgres:17
+    volumes:
+      - /volume1/docker/letterspacedb:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_DB: letterspace
+      POSTGRES_USER: letterspaceuser
+      POSTGRES_PASSWORD: letterspacepass
+    
+  letterspace:
+    image: ghcr.io/dcodesdev/letterspace:latest-node
+    depends_on:
+      - letterspace-db
+    ports:
+      - 5455:5000
+    environment:
+      DATABASE_URL: postgresql://letterspaceuser:letterspacepass@letterspace-db:5432/letterspace?schema=public
+      JWT_SECRET: bdgyUgEkSn8FjdEUT60puMpAgyiQEP3sM/jwPebALY0=
