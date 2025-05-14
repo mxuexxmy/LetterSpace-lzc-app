@@ -26,7 +26,7 @@ services:
   letterspace:
     image: registry.lazycat.cloud/mxuexxmy/dcodesdev/letterspace:ee0b6b5bee857dd6
     environment:
-      - DATABASE_URL=postgresql://letterspaceuser:letterspacepass@letterspace-db:5432/letterspace?schema=public
+      - DATABASE_URL=postgresql://letterspaceuser:letterspacepass@letterspace-db.xyz.mxue.letterspace.lzcapp:5432/letterspace?schema=public
       - JWT_SECRET=bdgyUgEkSn8FjdEUT60puMpAgyiQEP3sM/jwPebALY0=
     depends_on:
       - letterspace-db
