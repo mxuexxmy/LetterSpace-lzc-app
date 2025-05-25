@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: letterspacepass
     
   letterspace:
-    image: ghcr.io/dcodesdev/letterspace:latest-node
+    image: ghcr.io/dcodesdev/letterspace:v0.9.0-node
     depends_on:
       - letterspace-db
     ports:
